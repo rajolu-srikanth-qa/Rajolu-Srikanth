@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajolu Srikanth | QA Automation Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0f;
+  --bg2:#111118;
+  --bg3:#1a1a24;
+  --accent:#00e5ff;
+  --accent2:#7c3aed;
+  --green:#00ff88;
+  --text:#e8e8f0;
+  --muted:#7a7a99;
+  --border:#2a2a3e;
+  --card:#141420;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;line-height:1.6;overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--accent);letter-spacing:.05em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.open-badge{background:rgba(0,255,136,.1);color:var(--green);border:1px solid rgba(0,255,136,.3);font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;letter-spacing:.08em;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:80px 2rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.15) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,229,255,.08) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
+.hero-tag::before{content:'';width:30px;height:1px;background:var(--accent)}
+.hero-name{font-size:clamp(44px,6vw,80px);font-weight:700;line-height:1;letter-spacing:-.03em;margin-bottom:1rem}
+.hero-name span{color:var(--accent)}
+.hero-role{font-size:18px;color:var(--muted);font-weight:400;margin-bottom:.5rem}
+.hero-company{font-size:14px;color:var(--accent2);font-weight:500;margin-bottom:1.5rem}
+.hero-desc{font-size:15px;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:2rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:2.5rem}
+.meta-chip{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:5px 12px}
+.meta-chip span{color:var(--text)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#000;padding:12px 28px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:.03em;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,229,255,.3)}
+.btn-secondary{background:transparent;color:var(--text);padding:12px 28px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--border);transition:border-color .2s,color .2s}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+
+.stats-block{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+.stat-val{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--accent);display:block}
+.stat-lbl{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:.05em}
+
+/* SECTION */
+section{padding:6rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:.15em;margin-bottom:.5rem}
+.section-title{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:.5rem}
+.section-title span{color:var(--accent)}
+.section-line{width:60px;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:2px;margin-bottom:3rem}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2)}
+.exp-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;position:relative;overflow:hidden}
+.exp-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--accent2),var(--accent))}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1rem}
+.exp-role{font-size:20px;font-weight:700;color:var(--text)}
+.exp-period{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2);padding:4px 12px;border-radius:20px}
+.exp-company{font-size:15px;color:var(--accent2);font-weight:500;margin-bottom:.5rem}
+.exp-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem}
+.exp-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.3);letter-spacing:.05em}
+.exp-points{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.exp-points li{font-size:14px;color:var(--muted);padding-left:20px;position:relative;line-height:1.7}
+.exp-points li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:12px;top:3px}
+.exp-points li strong{color:var(--text);font-weight:600}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.skill-group{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.skill-group-title{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.skill-group-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+.skill-pill{font-size:12px;font-weight:500;padding:5px 12px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text);transition:border-color .2s,color .2s}
+.skill-pill:hover{border-color:var(--accent);color:var(--accent)}
+
+.capabilities{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:2rem}
+.cap-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.cap-icon{font-size:20px;flex-shrink:0}
+
+/* ACHIEVEMENTS */
+#achievements{background:var(--bg2)}
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.ach-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color .2s,transform .2s}
+.ach-card:hover{border-color:var(--accent2);transform:translateY(-2px)}
+.ach-icon{font-size:28px;flex-shrink:0}
+.ach-text{font-size:14px;color:var(--muted);line-height:1.7}
+.ach-text strong{color:var(--text)}
+
+/* CERTS */
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden;transition:border-color .2s}
+.cert-card:hover{border-color:var(--accent)}
+.cert-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+.cert-icon{font-size:32px;margin-bottom:.75rem}
+.cert-name{font-size:15px;font-weight:600;color:var(--text);margin-bottom:.25rem;line-height:1.4}
+.cert-org{font-size:13px;color:var(--accent2);margin-bottom:.5rem}
+.cert-year{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);background:var(--bg3);display:inline-block;padding:2px 10px;border-radius:20px;border:1px solid var(--border)}
+
+/* EDUCATION */
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2rem}
+.edu-degree{font-size:18px;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.edu-institute{font-size:15px;color:var(--accent2);font-weight:500;margin-bottom:.25rem}
+.edu-univ{font-size:13px;color:var(--muted);margin-bottom:.25rem}
+.edu-period{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent)}
+.edu-stats{display:flex;gap:16px}
+.edu-stat{text-align:center}
+.edu-stat-val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:var(--accent);display:block}
+.edu-stat-lbl{font-size:11px;color:var(--muted)}
+
+/* CONTACT */
+#contact{background:var(--bg2)}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;align-items:center;gap:1rem;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s}
+.contact-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.contact-icon{font-size:24px;flex-shrink:0;width:44px;height:44px;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.contact-label{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.contact-val{font-size:14px;color:var(--text);font-weight:500}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:2rem;text-align:center}
+.footer-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.08em}
+.footer-text span{color:var(--accent)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr}
+  .stats-block{grid-template-columns:1fr 1fr}
+  .edu-card{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">RS</div>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#achievements">Wins</a></li>
+      <li><a href="#certs">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="open-badge">OPEN TO WORK</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">QA Automation Engineer</div>
+      <h1 class="hero-name">RAJOLU<br><span>SRIKANTH</span></h1>
+      <p class="hero-role">Senior Software Engineer — QA Automation</p>
+      <p class="hero-company">HCLTech · Verizon Client</p>
+      <p class="hero-desc">Results-driven engineer ensuring software quality at scale — from Selenium automation to end-to-end billing validation for Verizon's telecom platform.</p>
+      <div class="hero-meta">
+        <div class="meta-chip">📍 <span>Andhra Pradesh, India</span></div>
+        <div class="meta-chip">🏢 <span>HCLTech</span></div>
+        <div class="meta-chip">📡 <span>Telecom Billing Domain</span></div>
+      </div>
+      <div class="hero-cta">
+        <a href="mailto:rajolusrikanth96@gmail.com" class="btn-primary">Get In Touch</a>
+        <a href="#experience" class="btn-secondary">View Experience</a>
+      </div>
+    </div>
+    <div class="stats-block">
+      <div class="stat"><span class="stat-val">4.6</span><div class="stat-lbl">Years Exp.</div></div>
+      <div class="stat"><span class="stat-val">40%</span><div class="stat-lbl">Coverage ↑</div></div>
+      <div class="stat"><span class="stat-val">30%</span><div class="stat-lbl">Effort ↓</div></div>
+      <div class="stat"><span class="stat-val">100%</span><div class="stat-lbl">SLA Met</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-num">01</div>
+    <h2 class="section-title">EXP<span>ERIENCE</span></h2>
+    <div class="section-line"></div>
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Senior Software Engineer — QA Automation</div>
+          <div class="exp-company">HCLTech | Client: Verizon</div>
+        </div>
+        <div class="exp-period">OCT 2021 – PRESENT</div>
+      </div>
+      <div class="exp-tags">
+        <span class="exp-tag">📡 Telecom</span>
+        <span class="exp-tag">💳 Billing</span>
+        <span class="exp-tag">💰 Payments</span>
+      </div>
+      <ul class="exp-points">
+        <li>Led end-to-end <strong>Regression, Functional, and CPR Testing</strong> for telecom billing applications supporting monthly ER and Agile releases, ensuring <strong>100% SLA compliance</strong>.</li>
+        <li>Developed and maintained <strong>Selenium WebDriver automation scripts</strong> using Java, improving regression coverage by <strong>40%</strong> and reducing manual testing effort by <strong>30%</strong>.</li>
+        <li>Performed <strong>SQL-based backend data validation</strong> and API Testing to ensure <strong>99% data accuracy</strong> across critical billing and payment cycles.</li>
+        <li>Worked on <strong>Automation Framework maintenance</strong> using Selenium, TestNG, Maven, and Git for stable and reusable test execution.</li>
+        <li>Managed complete <strong>defect lifecycle using JIRA</strong>, collaborating with Development, DBA, and Business Analyst teams — improved defect resolution turnaround by <strong>25%</strong>.</li>
+        <li>Prepared and presented <strong>daily/weekly status reports</strong> to onshore stakeholders, improving project visibility and release tracking efficiency.</li>
+        <li>Participated in <strong>Agile ceremonies</strong> including sprint planning, retrospectives, defect triage, and backlog grooming — contributed to on-time sprint deliveries.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-num">02</div>
+    <h2 class="section-title">TECH<span>NICAL SKILLS</span></h2>
+    <div class="section-line"></div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Automation</div>
+        <div class="skill-tags">
+          <span class="skill-pill">Selenium WebDriver</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">TestNG</span>
+          <span class="skill-pill">Maven</span>
+          <span class="skill-pill">WebDriver Manager</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Testing</div>
+        <div class="skill-tags">
+          <span class="skill-pill">Regression Testing</span>
+          <span class="skill-pill">Functional Testing</span>
+          <span class="skill-pill">API Testing</span>
+          <span class="skill-pill">Integration Testing</span>
+          <span class="skill-pill">Smoke &amp; Sanity</span>
+          <span class="skill-pill">Database Testing</span>
+          <span class="skill-pill">Gen AI Testing</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Tools</div>
+        <div class="skill-tags">
+          <span class="skill-pill">JIRA</span>
+          <span class="skill-pill">QTest</span>
+          <span class="skill-pill">Postman</span>
+          <span class="skill-pill">Control-M</span>
+          <span class="skill-pill">Git / GitHub</span>
+          <span class="skill-pill">GitHub Copilot</span>
+          <span class="skill-pill">Gemini AI</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Domain</div>
+        <div class="skill-tags">
+          <span class="skill-pill">Telecom Billing</span>
+          <span class="skill-pill">Payments</span>
+          <span class="skill-pill">Usage Testing</span>
+          <span class="skill-pill">CPR Releases</span>
+          <span class="skill-pill">Loans Domain</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Database</div>
+        <div class="skill-tags">
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">Backend Validation</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Methodology</div>
+        <div class="skill-tags">
+          <span class="skill-pill">Agile / Scrum</span>
+          <span class="skill-pill">STLC</span>
+          <span class="skill-pill">SDLC</span>
+        </div>
+      </div>
+    </div>
+    <div class="capabilities">
+      <div class="cap-item"><span class="cap-icon">🧪</span>Test Case Design &amp; Execution</div>
+      <div class="cap-item"><span class="cap-icon">🐛</span>Defect Lifecycle Management</div>
+      <div class="cap-item"><span class="cap-icon">🔁</span>Framework Maintenance</div>
+      <div class="cap-item"><span class="cap-icon">📊</span>Sprint &amp; Release Tracking</div>
+      <div class="cap-item"><span class="cap-icon">🤖</span>AI-Assisted Testing</div>
+      <div class="cap-item"><span class="cap-icon">🔌</span>API Testing with Postman</div>
+      <div class="cap-item"><span class="cap-icon">🗄️</span>SQL &amp; Backend Validation</div>
+      <div class="cap-item"><span class="cap-icon">📋</span>Stakeholder Reporting</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <div class="section-num">03</div>
+    <h2 class="section-title">KEY<span> ACHIEVEMENTS</span></h2>
+    <div class="section-line"></div>
+    <div class="achievements-grid">
+      <div class="ach-card">
+        <div class="ach-icon">⚡</div>
+        <div class="ach-text">Improved regression testing efficiency by implementing Selenium WebDriver automation, reducing manual testing effort by approximately <strong>35%</strong>.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🎯</div>
+        <div class="ach-text">Achieved <strong>high defect detection efficiency</strong> during SIT/UAT phases — prevented critical production leakages and improved release stability.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">✅</div>
+        <div class="ach-text">Consistently maintained <strong>100% SLA compliance</strong> while handling high-priority production incidents and release validations.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🚀</div>
+        <div class="ach-text">Reduced release validation timelines through <strong>optimized test case design</strong>, automation reuse, and effective regression planning.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🏆</div>
+        <div class="ach-text">Recognized by client stakeholders at <strong>Verizon</strong> for delivering stable, high-quality releases across multiple billing cycles.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🔍</div>
+        <div class="ach-text">Contributed to improved production stability through <strong>proactive defect analysis</strong>, root cause identification, and cross-team collaboration.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-inner">
+    <div class="section-num">04</div>
+    <h2 class="section-title">CERTI<span>FICATIONS</span></h2>
+    <div class="section-line"></div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">🤖</div>
+        <div class="cert-name">Gen AI Essential Training – 101 &amp; 102</div>
+        <div class="cert-org">AI &amp; Gen AI Central Academy, HCLTech</div>
+        <div class="cert-year">2026</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🧠</div>
+        <div class="cert-name">Gen AI Tester Training</div>
+        <div class="cert-org">Percipio – HCLTech</div>
+        <div class="cert-year">2025</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">💬</div>
+        <div class="cert-name">Generative AI Prompt Engineering Certification (Beginner – L2)</div>
+        <div class="cert-org">HCLTech</div>
+        <div class="cert-year">2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="section-num">05</div>
+    <h2 class="section-title">EDU<span>CATION</span></h2>
+    <div class="section-line"></div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">B.Tech — Electronics &amp; Communication Engineering</div>
+        <div class="edu-institute">Chalapathi Institute of Engineering and Technology</div>
+        <div class="edu-univ">Acharya Nagarjuna University, Guntur</div>
+        <div class="edu-period">2017 – 2021</div>
+      </div>
+      <div class="edu-stats">
+        <div class="edu-stat">
+          <span class="edu-stat-val">68.5%</span>
+          <div class="edu-stat-lbl">Percentage</div>
+        </div>
+        <div class="edu-stat">
+          <span class="edu-stat-val">4</span>
+          <div class="edu-stat-lbl">Years</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-num">06</div>
+    <h2 class="section-title">CON<span>TACT</span></h2>
+    <div class="section-line"></div>
+    <div class="contact-grid">
+      <a href="tel:+918179939945" class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-val">+91 81799 39945</div>
+        </div>
+      </a>
+      <a href="mailto:rajolusrikanth96@gmail.com" class="contact-card">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">rajolusrikanth96@gmail.com</div>
+        </div>
+      </a>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-val">Andhra Pradesh, India</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🏢</div>
+        <div>
+          <div class="contact-label">Current Employer</div>
+          <div class="contact-val">HCLTech</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">
+    <span>RAJOLU SRIKANTH</span> · QA AUTOMATION ENGINEER · 4.6 YEARS EXPERIENCE
+  </div>
+</footer>
+
+</body>
+</html>
